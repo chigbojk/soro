@@ -166,11 +166,17 @@ final class AppState: ObservableObject {
 
         // Derive Home stats from existing transcripts (single pass).
         stats.recompute(from: transcripts.recent(limit: 10_000))
-        // Post a once-per-month recap notification (self-guards; no-op if unavailable).
-        RecapNotifier(stats: stats).checkAndNotify()
 
         // First-run onboarding: show if not yet completed (nil = new install → show).
         showOnboarding = !(prefs.prefs.hasCompletedOnboarding ?? false)
+
+        // Skip OS side effects under XCTest: the Accessibility system prompt
+        // (AXIsProcessTrustedWithOptions) and the notification center block for
+        // minutes on a headless CI runner with no interactive session.
+        guard !AppState.isRunningUnderTests else { return }
+
+        // Post a once-per-month recap notification (self-guards; no-op if unavailable).
+        RecapNotifier(stats: stats).checkAndNotify()
 
         // ALWAYS start OS integration on launch, deferred one runloop so the app
         // is fully up. Previously this only ran from the dashboard window's
@@ -181,6 +187,12 @@ final class AppState: ObservableObject {
             self?.startServices()
         }
     }
+
+    /// True when running inside an XCTest bundle — used to skip OS side effects
+    /// (Accessibility prompt, notifications, event tap) that hang on headless CI.
+    static let isRunningUnderTests: Bool =
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+        || NSClassFromString("XCTestCase") != nil
 
     // MARK: - Onboarding helpers (M9)
 
