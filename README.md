@@ -9,11 +9,17 @@ connection required.
 
 ## Screenshots
 
-> Placeholder images — drop real captures into `docs/screenshots/`.
+**Dynamic Island recording bar** — hugs the notch while you dictate (frontmost-app icon · live waveform · timer):
 
-| Dashboard | Dynamic Island bar | Settings |
-| --- | --- | --- |
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Recording bar](docs/screenshots/notch-bar.png) | ![Settings](docs/screenshots/settings.png) |
+![Dynamic Island recording bar](docs/screenshots/notch-bar.png)
+
+| Home | Personal Dictionary |
+| --- | --- |
+| ![Home dashboard](docs/screenshots/dashboard.png) | ![Personal Dictionary](docs/screenshots/dictionary.png) |
+
+| Style Matching | Settings |
+| --- | --- |
+| ![Style Matching](docs/screenshots/style-matching.png) | ![Settings](docs/screenshots/settings.png) |
 
 ## Features
 
