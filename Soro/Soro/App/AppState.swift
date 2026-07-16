@@ -70,7 +70,12 @@ final class AppState: ObservableObject {
         self.autoDictionaryStore = autoDict
 
         // Services (real implementations wired at integration).
-        let audio = AVAudioEngineCaptureService(writer: RecordingWriter(paths: paths))
+        // Under XCTest, use the stub audio service: constructing the real
+        // AVAudioEngine touches Core Audio, which blocks for minutes on a
+        // headless CI runner that has no audio hardware.
+        let audio: AudioCaptureService = AppState.isRunningUnderTests
+            ? StubAudioCaptureService()
+            : AVAudioEngineCaptureService(writer: RecordingWriter(paths: paths))
         let transcription = WhisperKitTranscriptionService(
             paths: paths,
             vadSensitivity: { [weak prefs] in prefs?.prefs.vadSensitivity ?? 0.5 }
