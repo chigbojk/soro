@@ -46,6 +46,10 @@ final class LiveTranscriptionTests: XCTestCase {
     }
 
     func testTranscribeRealRecordingWithRealModel() async throws {
+        // Skip on CI — this can download a ~500MB Whisper model and run Core ML,
+        // which is slow/nondeterministic on a hosted runner.
+        try XCTSkipIf(ProcessInfo.processInfo.environment["CI"] != nil,
+                      "Skipping model-download test on CI")
         // Find the newest recording that actually holds >1s of audio — short
         // synthetic/test clips can leave sub-second WAVs as the literal newest file.
         let fm = FileManager.default

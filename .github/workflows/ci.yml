@@ -41,10 +41,15 @@ jobs:
             build
 
       - name: Test
+        env:
+          CI: "true"
         run: |
           xcodebuild \
             -project Soro.xcodeproj \
             -scheme Soro \
             -destination 'platform=macOS' \
+            -test-timeouts-enabled YES \
+            -default-test-execution-time-allowance 120 \
+            -maximum-test-execution-time-allowance 300 \
             CODE_SIGN_IDENTITY="-" CODE_SIGNING_ALLOWED=NO \
             test

@@ -194,6 +194,7 @@ final class StyleMatchingTests: XCTestCase {
     // MARK: - Live Ollama test: same input, casual vs formal, outputs differ
 
     func testLiveStyleOutputsDifferBetweenCasualAndFormal() async throws {
+        try XCTSkipIf(ProcessInfo.processInfo.environment["CI"] != nil, "Skipping live Ollama test on CI")
         // Skip gracefully if Ollama is not reachable.
         let client = OllamaClient(generateTimeout: 60)
         guard await client.isReachable() else {

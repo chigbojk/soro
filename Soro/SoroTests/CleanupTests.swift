@@ -342,6 +342,7 @@ final class CleanupTests: XCTestCase {
     // MARK: - Live smoke test (skips gracefully if Ollama/model absent)
 
     func testLiveCleanupSmoke() async throws {
+        try XCTSkipIf(ProcessInfo.processInfo.environment["CI"] != nil, "Skipping live Ollama test on CI")
         // Generous timeout so a cold model load doesn't trip the 4s production
         // fallback — this test verifies cleanup *quality*, not the timeout path
         // (which `testCleanupFallsBackWhenOllamaUnreachable` covers).
