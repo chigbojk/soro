@@ -1,6 +1,20 @@
+<p align="center">
+  <img src="docs/banner.png" alt="Soro — fully-local voice dictation for macOS" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/chigbojk/soro/actions/workflows/ci.yml"><img src="https://github.com/chigbojk/soro/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/chigbojk/soro/releases/latest"><img src="https://img.shields.io/github/v/release/chigbojk/soro?label=download&color=5B4FE6" alt="Download latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/macOS-14%2B-black?logo=apple" alt="macOS 14+">
+  <img src="https://img.shields.io/badge/100%25-on--device-1FA97A" alt="100% on-device">
+</p>
+
 # Soro
 
 **Soro — a fully-local, on-device voice dictation app for macOS. Hold a key, speak anywhere, get clean text.**
+
+### ⬇️ [Download the latest `.dmg`](https://github.com/chigbojk/soro/releases/latest) &nbsp;·&nbsp; or [build from source](#build--run)
 
 Soro (Yoruba: *ṣọ̀rọ̀*, "to speak / to shout") lets you hold a key, speak into any app,
 and get clean, well-formatted text inserted at your cursor. Everything runs on your Mac —
