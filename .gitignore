@@ -1,0 +1,15 @@
+# Generated Xcode project (regenerate with `xcodegen generate`)
+Soro.xcodeproj/
+
+# Build & distribution output
+build/
+dist/
+DerivedData/
+
+# macOS / Xcode cruft
+.DS_Store
+*.xcuserstate
+xcuserdata/
+
+# Tooling
+.claude/
